@@ -1,7 +1,7 @@
 import csv
 import sys
 
-MAX_WEIGHT = 10000
+INF = float("inf")
 class Solver(object):
 	"""
 	"""
@@ -92,7 +92,7 @@ class Solver(object):
 		str0.append("".join(self.N_))
 		for shift in range(len(self.N)-1):
 			if(self.N_l_[shift] in self.N_l):
-				if self.D[self.N_l_[shift]] == MAX_WEIGHT:
+				if self.D[self.N_l_[shift]] == INF:
 					str0.append("-")
 				else:
 					str0.append("{0},{1}".format(self.D[self.N_l_[shift]], self.P[self.N_l_[shift]]))
@@ -119,8 +119,8 @@ class Solver(object):
 				self.D_[n] = self.N[src_id].neigbors[n]
 				self.P[n] = src_id
 			else:
-				self.D[n] = MAX_WEIGHT
-				self.D_[n] = MAX_WEIGHT
+				self.D[n] = MINF
+				self.D_[n] = INF
 				self.P[n] = ""
 
 		if self.verbose is True:
@@ -143,7 +143,7 @@ class Solver(object):
 					self.D_[cur_id] =  self.D_[min_id]+self.N[cur_id].neigbors[min_id]
 					self.P[cur_id] = min_id
 
-			self.D_[min_id] = MAX_WEIGHT
+			self.D_[min_id] = INF
 			if self.verbose is True:
 				self._print_state()
 			
